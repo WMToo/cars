@@ -8,12 +8,34 @@
         </h1>
     </div>
 
+    <div class="pt-10">
+        <a href="cars/create"
+            class="border-b-2 pb-2 border-dotted italic text-gray-500">
+         Add cars
+        </a>
+    </div>
+
     <div class="w-5/6 py-10">
         
         @foreach ($cars as $car)
             <div class="m-auto">
+                <div class="float-right">
+                    <a href="cars/{{$car->id}}/edit"
+                        class="border-b-2 pb-2 border-dotted italic text-green-500">
+                        Edit &rarr;
+                    </a>
+
+                    <form action="/cars/{{$car->id}}" class="pt-2" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button class="border-b-2 pb-2 border-dotted italic text-red-500">
+                            Delete &rarr;
+                        </button>
+                    </form>
+                </div>  
+
                 <span class="uppercase text-blue-500 font-bold text-xs italic">
-                    {{$car->founded}}
+                   Founded : {{$car->founded}}
                 </span>
                 <h2 class="text-gray-700 text-5xl;">
                     {{$car->name}}
